@@ -1,0 +1,111 @@
+# Robot Arm Control System Configuration
+# This file contains all configurable parameters for the system
+
+# System Configuration
+system:
+  name: "Robot Arm Control System"
+  version: "1.0.0"
+  debug_mode: true
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+# Hardware Configuration
+hardware:
+  # GPIO Pin Configuration
+  gpio:
+    emergency_stop_pin: 21
+    status_led_pin: 22 # optional for status
+    power_monitor_pin: 23  # Optional: for current monitoring
+    
+  # Servo Configuration
+  servos:
+    base:
+      name: "base"
+      pin: 18
+    shoulder:
+      name: "shoulder"
+      pin: 19
+    elbow:
+      name: "elbow"
+      pin: 20
+    wrist_rotate:
+      name: "wrist_rotate"
+      pin: 24
+    gripper:
+      name: "gripper"
+      pin: 26
+
+# Safety Configuration
+safety:
+  enabled: true
+  emergency_stop_enabled: true
+  bounds_checking_enabled: true
+  speed_limiting_enabled: true
+  timeout_protection_enabled: true
+  
+  # Timeout settings (in milliseconds)
+  command_timeout: 5000  # Maximum time for a single command
+  movement_timeout: 10000  # Maximum time for movement sequences
+  emergency_stop_timeout: 100  # Time to stop all motors
+  
+  # Speed and acceleration limits
+  global_max_speed: 80  # Maximum speed percentage across all servos
+  global_max_acceleration: 50  # Maximum acceleration percentage
+  
+  # Power monitoring
+  power_monitoring_enabled: false
+  max_current_draw: 2.0  # Amperes
+  voltage_monitoring_enabled: false
+  min_voltage: 4.5  # Volts
+
+# API Configuration
+api:
+  host: "0.0.0.0"  # Listen on all interfaces
+  port: 8000
+  debug: true
+  
+  # CORS settings
+  cors:
+    enabled: true
+    allowed_origins: ["*"]  # Configure appropriately for production
+    allowed_methods: ["GET", "POST", "PUT", "DELETE"]
+    allowed_headers: ["*"]
+  
+  # Rate limiting
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 60
+    burst_limit: 10
+  
+  # Authentication (future feature)
+  authentication:
+    enabled: false
+    api_key_required: false
+    jwt_enabled: false
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  file_enabled: true
+  file_path: "logs/robot_arm.log"
+  max_file_size: "10MB"
+  backup_count: 5
+  console_enabled: true
+  
+  # Log formats
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+
+# MCP Server Configuration (Future)
+mcp:
+  enabled: false
+  host: "localhost"
+  port: 8001
+  authentication_required: true
+  max_concurrent_agents: 5
+  
+  # Agent permissions
+  agent_permissions:
+    allow_emergency_stop: true
+    allow_safety_override: false
+    allow_configuration_changes: false
+    allow_movement_sequences: true 

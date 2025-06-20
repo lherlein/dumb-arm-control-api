@@ -1,0 +1,34 @@
+# Core web framework and API
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.5.0
+
+# GPIO and hardware control
+gpiozero>=2.0.0
+# RPi.GPIO is installed via apt
+
+# Configuration and utilities
+pyyaml>=6.0.1
+python-multipart>=0.0.6
+requests>=2.31.0
+
+# Logging and monitoring
+structlog>=23.2.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-mock>=3.11.0
+numpy>=1.24.0  # For servo testing and mathematical operations
+
+# Development tools
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.5.0
+
+# Optional: For future MCP server integration
+# mcp>=0.1.0  # Uncomment when MCP library is available
+
+# Optional: For advanced features
+# opencv-python>=4.8.0  # For computer vision (future)
+# scipy>=1.11.0  # For scientific computing (future) 
